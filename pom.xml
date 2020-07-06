@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.pms</groupId>
+	<artifactId>pmsAndCrs</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.7.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+		<profile-service.version>${project.version}</profile-service.version>
+		<querydsl.version>4.0.7</querydsl.version>
+		<querydsl.apt-maven-plugin.version>1.1.3</querydsl.apt-maven-plugin.version>
+		<com.querydsl.version>4.2.1</com.querydsl.version>
+		<gson.version>2.8.5</gson.version>
+	</properties>
+
+	<modules>
+		<module>crs-server</module>
+		<module>profile-service</module>
+		<module>property-service</module>
+		<module>database-tendancy</module>
+		<module>authorization-service</module>
+		<module>crsEntities</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.pms</groupId>
+				<artifactId>profile-service</artifactId>
+				<version>${profile-service.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
+			</dependency>
+
+			<!-- QueryDSL Starts -->
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-apt</artifactId>
+				<version>${com.querydsl.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.querydsl</groupId>
+				<artifactId>querydsl-mongodb</artifactId>
+				<version>${com.querydsl.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- QueryDSL Ends -->
+
+		</dependencies>
+	</dependencyManagement>
+</project>
